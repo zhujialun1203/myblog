@@ -1,13 +1,11 @@
-FROM nginx:1.15.2
-ENV REFRESHED_AT 2018-08-09
+# /Dockerfile
+FROM node:8-alpine as builder
+WORKDIR /project
+COPY . /project/
+RUN yarn \
+    && yarn global add hexo-cli \
+    && hexo g
 
-COPY ./index.html /usr/share/nginx/html/index.html
-
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/error.log
-
-EXPOSE 80
-
-STOPSIGNAL SIGTERM
-
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:alpine
+COPY --from=builder /project/public /usr/share/nginx/html
+RUN apk add --no-cache bash
