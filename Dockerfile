@@ -4,6 +4,7 @@ WORKDIR /project
 COPY . /project/
 RUN yarn \
     && yarn global add hexo-cli \
+    && cd blog
     && hexo g
 
 FROM nginx:alpine
