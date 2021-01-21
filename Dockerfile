@@ -1,12 +1,10 @@
 # /Dockerfile
-FROM node:8-alpine as builder
-WORKDIR /project
-COPY . /project/
-RUN yarn \
-    && yarn global add hexo-cli \
-    && cd blog \
-    && hexo g
-
-FROM nginx:alpine
-COPY --from=builder /project/public /usr/share/nginx/html
-RUN apk add --no-cache bash
+FROM node:latest
+RUN npm install
+# install hexo
+RUN npm install hexo-cli -g
+# install hexo server
+RUN npm install hexo-server
+RUN npm install hexo-deployer-git
+# set home dir
+WORKDIR /usr/blog
