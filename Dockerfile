@@ -2,7 +2,7 @@
 FROM node:latest
 WORKDIR /usr/blog
 COPY ./ /usr/blog
-
+RUN cd blog
 # install hexo
 RUN npm install hexo-cli -g
 RUN npm install
