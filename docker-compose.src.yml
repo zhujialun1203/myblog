@@ -6,6 +6,6 @@ services:
       restart_policy:
         condition: on-failure
     expose:
-      - "80"
+      - "4000"
     ports:
-      - 8081:80
+      - 8081:4000

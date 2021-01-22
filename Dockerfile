@@ -5,4 +5,4 @@ COPY ./ /usr/blog
 RUN cd blog \
 && npm install hexo-cli -g \
 && npm install \
-&& hexo server -p 80\
+&& hexo deploy -g\
