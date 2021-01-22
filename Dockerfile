@@ -2,9 +2,9 @@
 FROM node:12-alpine
 WORKDIR /blog
 
-RUN cd blog \
+RUN ls \
 && npm install hexo-cli -g \
-&& npm install \
+&& npm install 
 
 EXPOSE 5000
 ENTRYPOINT ["hexo", "clean"]  
