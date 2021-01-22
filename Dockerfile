@@ -1,8 +1,12 @@
 # /Dockerfile
-FROM node:latest
-WORKDIR /usr/blog
-COPY ./ /usr/blog
+FROM node:12-alpine
+WORKDIR /blog
+
 RUN cd blog \
 && npm install hexo-cli -g \
 && npm install \
-&& hexo deploy -g\
+
+EXPOSE 5000
+ENTRYPOINT ["hexo", "clean"]  
+ENTRYPOINT ["hexo", "g"]  
+ENTRYPOINT ["hexo", "d"]  
